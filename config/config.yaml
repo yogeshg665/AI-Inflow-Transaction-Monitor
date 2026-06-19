@@ -1,0 +1,79 @@
+# =============================================================================
+# AI Inflow Transaction Monitor - Engine Configuration
+# Tunable parameters for detectors, scoring, and decision policy. Values here are
+# safe defaults and can be overridden per environment.
+# =============================================================================
+
+engine:
+  # Maximum number of cases processed in a single batch run.
+  max_batch_size: 1000
+  # Persist a JSON monitoring report for every case.
+  persist_reports: true
+
+decision_policy:
+  # Risk score (0-100) at or above which an inbound transaction is flagged.
+  flag_threshold: 75
+  # Risk score (0-100) at or above which a case is routed for analyst review.
+  review_threshold: 45
+
+# Relative contribution of each detector to the aggregate risk score.
+# Weights are normalized at runtime, so they need not sum to 1.0.
+skill_weights:
+  structuring: 0.20
+  mule_activity: 0.20
+  credit_anomaly: 0.15
+  source_screening: 0.20
+  inflow_velocity: 0.12
+  cross_border: 0.10
+  prior_history: 0.15
+
+structuring:
+  # Regulatory reporting threshold the deposits are being kept beneath.
+  reporting_threshold: 10000.0
+  # Fraction of the threshold above which a single credit is near-threshold.
+  near_threshold_ratio: 0.9
+  # Window for aggregating multiple sub-threshold credits.
+  lookback_hours: 72
+  # Number of sub-threshold credits in the window that implies smurfing.
+  aggregate_count: 3
+
+mule_activity:
+  # Window after the credit within which outbound drains are pass-through.
+  passthrough_window_hours: 24
+  # Fraction of the credit moved out that implies pass-through behavior.
+  passthrough_ratio: 0.8
+  # Minimum inbound amount before pass-through is evaluated.
+  min_inbound_amount: 1000.0
+
+credit_anomaly:
+  # Z-score above which an inbound amount is a statistical outlier.
+  zscore_threshold: 3.0
+  # Multiple of the historical mean inbound that is treated as anomalous.
+  baseline_multiple: 5.0
+  # Minimum number of prior inbound movements required to form a baseline.
+  min_history: 3
+
+source_screening:
+  # Country codes whose inbound funds warrant additional scrutiny.
+  high_risk_countries: ["XX", "YY", "ZZ"]
+
+inflow_velocity:
+  # Window used to count recent inbound credits for the same account.
+  window_hours: 24
+  # Inbound count within the window considered a burst.
+  max_inbound_count: 4
+  # Cumulative inbound amount within the window considered a burst.
+  max_inbound_amount: 15000.0
+
+cross_border:
+  # Expected home currency for the account; mismatches add risk.
+  home_currency: "USD"
+  # Country codes that elevate a cross-border corridor.
+  high_risk_countries: ["XX", "YY", "ZZ"]
+
+memory:
+  # Persist monitored cases and recall prior history for repeat accounts and
+  # counterparties. Disabled by default so the engine is stateless unless opted in.
+  enabled: false
+  # SQLite database path for collective case memory and analyst feedback.
+  path: ".inflow_memory/memory.db"

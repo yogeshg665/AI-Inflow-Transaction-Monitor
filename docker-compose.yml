@@ -1,0 +1,10 @@
+services:
+  inflow-monitor:
+    build: .
+    image: ai-inflow-transaction-monitor:latest
+    environment:
+      - LOG_LEVEL=INFO
+      - LLM_PROVIDER=none
+    volumes:
+      - ./output:/app/output
+    command: ["monitor", "data/samples/sample_inflows.json", "--output", "output"]

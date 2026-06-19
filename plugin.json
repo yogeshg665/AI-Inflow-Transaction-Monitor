@@ -1,0 +1,41 @@
+{
+  "name": "ai-inflow-transaction-monitor",
+  "version": "1.0.0",
+  "description": "Agent Skills that monitor inbound transactions and flag suspicious inflows end to end, backed by a deterministic Python engine with an optional collective-memory layer.",
+  "license": "MIT",
+  "keywords": [
+    "aml",
+    "transaction-monitoring",
+    "inbound-payments",
+    "agents",
+    "risk-scoring",
+    "ai"
+  ],
+  "skills": [
+    "skills/using-inflow-monitor",
+    "skills/inflow-intake",
+    "skills/counterparty-enrichment",
+    "skills/structuring-detection",
+    "skills/mule-activity",
+    "skills/credit-anomaly",
+    "skills/source-screening",
+    "skills/inflow-velocity",
+    "skills/cross-border-risk",
+    "skills/prior-history-recall",
+    "skills/risk-scoring",
+    "skills/monitoring-decisioning",
+    "skills/case-reporting"
+  ],
+  "agents": [
+    "agents/aml-analyst.md",
+    "agents/monitoring-lead.md",
+    "agents/compliance-reviewer.md"
+  ],
+  "references": [
+    "references/aml-typologies.md",
+    "references/risk-scoring-rubric.md",
+    "references/monitoring-policy.md",
+    "references/investigation-checklist.md",
+    "references/memory-and-learning.md"
+  ]
+}
