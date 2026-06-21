@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Influx - AI Inflow Transaction Monitor" width="100%">
+</p>
+
 # Influx &middot; AI Inflow Transaction Monitor
 
 Production-grade Agent Skills that monitor inbound transactions and flag
