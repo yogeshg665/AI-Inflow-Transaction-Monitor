@@ -1,4 +1,4 @@
-# AI Inflow Transaction Monitor
+# Influx &middot; AI Inflow Transaction Monitor
 
 Production-grade Agent Skills that monitor inbound transactions and flag
 suspicious inflows end to end. This pack automates the first-line triage of
