@@ -24,6 +24,22 @@ or credentials, so every skill has an executable reference.
  └──────┘     └──────┘     └────────┘     └──────┘     └──────┘     └──────┘
 ```
 
+## Contents
+
+- [Skills](#skills)
+- [Agent Personas](#agent-personas)
+- [Reference Material](#reference-material)
+- [Design Choices](#design-choices)
+- [Project Structure](#project-structure)
+- [Quick Start](#quick-start)
+- [Memory and Learning](#memory-and-learning)
+- [Input Format](#input-format)
+- [Configuration](#configuration)
+- [Containerized Execution](#containerized-execution)
+- [Validation and Testing](#validation-and-testing)
+- [Responsible Use](#responsible-use)
+- [License](#license)
+
 ## Skills
 
 The pack includes 13 skills: 1 meta-skill that routes work, plus 12 lifecycle
@@ -228,6 +244,8 @@ docker compose up --build
 Reports are written to the host `output/` directory.
 
 ## Validation and Testing
+
+Validate the skill manifests and run the deterministic engine's test suite:
 
 ```bash
 python scripts/validate_skills.py
